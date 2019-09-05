@@ -53,8 +53,21 @@ public class Calculate {
 	
 	//a call to toMixedNum converts and returns an improper fraction into a mixed number
 	//Accepts 2 integers, numerator and denominator, and returns a string
-	public static String toMixedNum
+	public static String toMixedNum(int numerator, int denominator) {
+		int mixedNumberWhole = numerator/denominator;
+		int mixedNumberNumerator = numerator - (mixedNumberWhole*denominator);
+		return (mixedNumberWhole + "  " + mixedNumberNumerator + "/" + denominator);
+	}
 	
+	//a call to foil converts and returns a binomial to quadratic form
+	//Accepts four integers and a string from (ax+b)(cx+d) as (int a, int b, int c, int d, "x")
+	//returns a string in the quadratic form
+	public static String foil(int a, int b, int c, int d, String x) {
+		int firstTerm = a * c;
+		int secondTerm = (a * d) + (c * b);
+		int thirdTerm = b * d;
+		return firstTerm + "x^2 + " + "(" + secondTerm + "x) + (" + thirdTerm + ")";
+	}
 	
 	
 	
