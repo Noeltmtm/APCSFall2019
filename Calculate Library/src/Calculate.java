@@ -33,8 +33,15 @@ public class Calculate {
 	//A call to toDegrees converts and returns radians to degrees
 	//The method accepts a double and returns a double.
 	public static double toDegrees(double radians) {
-		double degrees = radians * 57.2958;
+		double degrees = radians * 57.2958;//57.2958 is equal to 180/pi
 		return degrees;
+	}
+	
+	//A call to toRadians converts and returns degrees to radians
+	//The method accepts a double and returns a double
+	public static double toRadians(double degrees) {
+		double radians = degrees * 0.01745;//0.01745 is equal to pi/180
+		return radians;
 	}
 	
 	//A call to discriminant returns the discriminant of the inputs.
@@ -66,7 +73,7 @@ public class Calculate {
 		int firstTerm = a * c;
 		int secondTerm = (a * d) + (c * b);
 		int thirdTerm = b * d;
-		return firstTerm + "x^2 + " + "(" + secondTerm + "x) + (" + thirdTerm + ")";
+		return firstTerm + x + "^2 + " + "(" + secondTerm + x +") + (" + thirdTerm + ")";
 	}
 	
 	
