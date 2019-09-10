@@ -76,12 +76,132 @@ public class Calculate {
 		return firstTerm + x + "^2 + " + "(" + secondTerm + x +") + (" + thirdTerm + ")";
 	}
 	
+	//A call to idDivisibleBy determines if one integer is evenly divisible by another
+	//This method accepts 2 integers and returns a boolean
+	public static boolean isDivisibleBy (int a, int b) {
+		boolean divisible = false;
+		if (a % b == 0) {
+			divisible = true;
+			return divisible;
+		} else {
+			return divisible;
+		}
+	}
 	
+	//A call to absValue returns the absolute value of the number passed
+	//This method accepts a double and returns a double
+	public static double absValue (double num) {
+		if (num < 0) {
+			return num * -1;
+		}else {
+			return num;
+		}
+	}
 	
+	//A call to max returns the larger of the variables passed.
+	//The method accepts 2 doubles and returns a double
+	public static double max(double a, double b) {
+		if (a > b) {
+			return a;
+		}else {
+			return b;
+		}
+	}
+	
+	//A call to max returns the larger of the variable passed.
+	//The method accepts 3 doubles and returns a double.
+	public static double max (double a, double b, double c) {
+		if (a >= b && a >= c) {
+			return a;
+		} else if(b >= a && b >= c) {
+			return b;
+		}else {
+			return c;
+		}
+	}
+	
+	//A call to min returns the smaller of the values passed.
+	//The method accepts 2 integers and returns a int.
+	public static int min (int a, int b) {
+		if (a < b) {
+			return a;
+		}else {
+			return b;
+		}
+	}
+	
+	//A call to round2 rounds a double correctly to 2 decimal places
+	//The method accepts a double and returns a double.
+	public static double round2 (double num) {
+		num = (num * 100) + 0.5;
+		num = (int) num;
+		return num/100;
+	}
+	
+	//A call to exponent raises a value to a positive integer power
+	//The method accepts a double and an integer and returns a double
+	public static double exponent(double number, int exponent) {
+		double value = number;
+		for(int i = 1; i < exponent; i++) {
+			value = value * number;
+		}
+		return value;
+	}
+	
+	//A call to factorial returns the factorial of the value passed.
+	//The method accepts an integer and returns an integer.
+	public static int factorial(int num) {
+		int value = num;
+		for (int i = num - 1; i > 0; i--) {
+			value = value * i;
+		}
+		return value;
+	}
+	
+	//A call to isPrime determines if an integer is prime.
+	//The method accepts an integer and returns a boolean.
+	public static boolean isPrime(int num) {
+		boolean prime = true;
+		int test  = 2;
+		while(test < num) {
+			if (test % num == 0) {
+				prime = false;
+				return prime;
+			}
+			test++;
+		}
+		return prime;
+	}
+	
+	//A call to gcf finds the greatest common factor of two integers.
+	//The method accepts two positive integers and returns an integer.
+	public static int gcf(int a, int b) {
+		int test = 1;
+		int gcf = 1;
+		while (test <= a && test <= b) {
+			if (a % test == 0 && b % test == 0) {
+				gcf = test;
+			}
+			test++;
+		}
+		return gcf;
+	}
+	
+	//A call to sqrt returns an approximation of the square root of the value passed, rounded to 2 decimal places.
+	//Method accepts a double and returns a double.
+	public static double sqrt (double num) {
+		double guess = 1;
+		while (guess*guess != (num + .005) || guess*guess !=(num - .005)) {
+			guess = (1/2)*((num/guess) + guess);
+		}
+		guess = Calculate.round2(guess);
+		return guess;
+	}
 	
 	
 	
 	
 }
+
 	
 	
