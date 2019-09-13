@@ -190,18 +190,22 @@ public class Calculate {
 	//A call to sqrt returns an approximation of the square root of the value passed, rounded to 2 decimal places.
 	//Method accepts a double and returns a double.
 	public static double sqrt (double num) {
-		double guess = 1;
-		while (guess*guess != (num + .005) || guess*guess !=(num - .005)) {
-			guess = (1/2)*((num/guess) + guess);
+		double guess = 1.0;
+		while ((guess*guess) != (num + 0.005) || (guess*guess) != (num - 0.005)) {
+			guess = (num/guess + guess)/2;
 		}
 		guess = Calculate.round2(guess);
 		return guess;
-	}
-	
-	
+	} 
 	
 	
 }
+		
+	
+	
+	
+	
+
 
 	
 	
