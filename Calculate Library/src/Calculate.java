@@ -141,6 +141,9 @@ public class Calculate {
 	//A call to exponent raises a value to a positive integer power
 	//The method accepts a double and an integer and returns a double
 	public static double exponent(double number, int exponent) {
+		if (exponent < 1) {
+			throw new IllegalArgumentException("exponent cannot be less than 1");
+		}
 		double value = number;
 		for(int i = 1; i < exponent; i++) {
 			value = value * number;
@@ -151,6 +154,9 @@ public class Calculate {
 	//A call to factorial returns the factorial of the value passed.
 	//The method accepts an integer and returns an integer.
 	public static int factorial(int num) {
+		if (num < 0) {
+			throw new IllegalArgumentException("integer cannot be negative");
+		}
 		int value = num;
 		for (int i = num - 1; i > 0; i--) {
 			value = value * i;
@@ -191,13 +197,13 @@ public class Calculate {
 	//Method accepts a double and returns a double.
 	public static double sqrt (double num) {
 		double guess = 1.0;
-		while ((guess*guess) != (num + 0.005) || (guess*guess) != (num - 0.005)) {
+		while (Calculate.absValue(guess*guess - num) > 0.005) {
 			guess = (num/guess + guess)/2;
 		}
 		guess = Calculate.round2(guess);
 		return guess;
 	} 
-	
+	 
 	
 }
 		
