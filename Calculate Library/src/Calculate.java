@@ -78,9 +78,12 @@ public class Calculate {
 	
 	//A call to idDivisibleBy determines if one integer is evenly divisible by another
 	//This method accepts 2 integers and returns a boolean
-	public static boolean isDivisibleBy (int a, int b) {
+	public static boolean isDivisibleBy (int numerator, int denominator) {
+		if(denominator == 0) {
+			throw new IllegalArgumentException("denominator cannot be 0");
+		}
 		boolean divisible = false;
-		if (a % b == 0) {
+		if (numerator % denominator == 0) {
 			divisible = true;
 			return divisible;
 		} else {
@@ -133,9 +136,16 @@ public class Calculate {
 	//A call to round2 rounds a double correctly to 2 decimal places
 	//The method accepts a double and returns a double.
 	public static double round2 (double num) {
-		num = (num * 100) + 0.5;
-		num = (int) num;
-		return num/100;
+		if(num >= 0) {
+			num = (num * 100) + 0.5;
+			num = (int) num;
+			return num/100;
+		}else {
+			num = (num * 100) 
+					- 0.5;
+			num = (int) num;
+			return num/100;
+		}
 	}
 	
 	//A call to exponent raises a value to a positive integer power
@@ -196,6 +206,9 @@ public class Calculate {
 	//A call to sqrt returns an approximation of the square root of the value passed, rounded to 2 decimal places.
 	//Method accepts a double and returns a double.
 	public static double sqrt (double num) {
+		if(num < 0) {
+			throw new IllegalArgumentException("cannot find square root of negative");
+		}
 		double guess = 1.0;
 		while (Calculate.absValue(guess*guess - num) > 0.005) {
 			guess = (num/guess + guess)/2;
@@ -203,6 +216,25 @@ public class Calculate {
 		guess = Calculate.round2(guess);
 		return guess;
 	} 
+	
+	//A call to quadForm uses coefficients of a quadratic in standard form and uses quadratic formula to approximate the real roots, if any.
+	//Method accepts 3 integers and returns a string 
+	public static String quadForm(int a, int b, int c) {
+		if (Calculate.discriminant(a, b, c) < 0){
+			return "no real roots";
+		}
+		
+		double root1 = (-b + Calculate.sqrt(Calculate.square(b) - 4*a*c))/(2*a);
+		double root2 = (-b - Calculate.sqrt(Calculate.square(b) - 4*a*c))/(2*a);
+		if (root1 == root2) {
+			root1 = Calculate.round2(root1);
+			return "" + root1;
+		}else {
+			root1 = Calculate.round2(root1);
+			root2 = Calculate.round2(root2);
+			return root1 + " and " + root2;
+		}
+	}
 	 
 	
 }
