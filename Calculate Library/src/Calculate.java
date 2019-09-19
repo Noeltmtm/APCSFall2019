@@ -218,7 +218,7 @@ public class Calculate {
 	} 
 	
 	//A call to quadForm uses coefficients of a quadratic in standard form and uses quadratic formula to approximate the real roots, if any.
-	//Method accepts 3 integers and returns a string 
+	//Method accepts 3 integers and returns a string  
 	public static String quadForm(int a, int b, int c) {
 		if (Calculate.discriminant(a, b, c) < 0){
 			return "no real roots";
@@ -231,7 +231,7 @@ public class Calculate {
 			return "" + root1;
 		}else {
 			root1 = Calculate.round2(root1);
-			root2 = Calculate.round2(root2);
+			root2 = Calculate.round2(root2 );
 			return root1 + " and " + root2;
 		}
 	}
