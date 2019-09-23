@@ -5,28 +5,28 @@
  */
 public class Calculate {
 	//A call to square returns the square of the input. The method accepts an integer and returns an integer
-	public static int square(int num) {
-		int sum = num * num;
+	public static int square(int number) {
+		int sum = number * number;
 		return sum;
 	}
 	
 	//A call to cube returns the cube of the input. The method accepts an integer and returns an integer.
-	public static int cube(int num) {
-		int sum = num * num * num;
+	public static int cube(int number) {
+		int sum = number * number * number;
 		return sum;
 	}
 	
 	//A call to average returns the average of 2 inputs.
 	//The method accepts 2 doubles and returns a double.
-	public static double average(double num1, double num2) {
-		double avg = (num1 + num2)/2;
+	public static double average(double number1, double number2) {
+		double avg = (number1 + number2)/2;
 		return avg;
 	}
 	
 	//A call to average returns the average of 3 inputs.
 	//The method accepts 3 doubles and returns a double.
-	public static double average(double num1, double num2, double num3) {
-		double avg = (num1 + num2 + num3)/3;
+	public static double average(double number1, double number2, double number3) {
+		double avg = (number1 + number2 + number3)/3;
 		return avg;
 	}
 	
@@ -93,11 +93,11 @@ public class Calculate {
 	
 	//A call to absValue returns the absolute value of the number passed
 	//This method accepts a double and returns a double
-	public static double absValue (double num) {
-		if (num < 0) {
-			return num * -1;
+	public static double absValue (double number) {
+		if (number < 0) {
+			return number * -1;
 		}else {
-			return num;
+			return number;
 		}
 	}
 	
@@ -135,16 +135,16 @@ public class Calculate {
 	
 	//A call to round2 rounds a double correctly to 2 decimal places
 	//The method accepts a double and returns a double.
-	public static double round2 (double num) {
-		if(num >= 0) {
-			num = (num * 100) + 0.5;
-			num = (int) num;
-			return num/100;
+	public static double round2 (double number) {
+		if(number >= 0) {
+			number = (number * 100) + 0.5;
+			number = (int) number;
+			return number/100;
 		}else {
-			num = (num * 100) 
+			number = (number * 100) 
 					- 0.5;
-			num = (int) num;
-			return num/100;
+			number = (int) number;
+			return number/100;
 		}
 	}
 	
@@ -163,12 +163,12 @@ public class Calculate {
 	
 	//A call to factorial returns the factorial of the value passed.
 	//The method accepts an integer and returns an integer.
-	public static int factorial(int num) {
-		if (num < 0) {
+	public static int factorial(int number) {
+		if (number < 0) {
 			throw new IllegalArgumentException("integer cannot be negative");
 		}
-		int value = num;
-		for (int i = num - 1; i > 0; i--) {
+		int value = number;
+		for (int i = number - 1; i > 0; i--) {
 			value = value * i;
 		}
 		return value;
@@ -176,11 +176,11 @@ public class Calculate {
 	
 	//A call to isPrime determines if an integer is prime.
 	//The method accepts an integer and returns a boolean.
-	public static boolean isPrime(int num) {
+	public static boolean isPrime(int number) {
 		boolean prime = true;
 		int test  = 2;
-		while(test < num) {
-			if (test % num == 0) {
+		while(test < number) {
+			if (test % number == 0) {
 				prime = false;
 				return prime;
 			}
@@ -205,13 +205,13 @@ public class Calculate {
 	
 	//A call to sqrt returns an approximation of the square root of the value passed, rounded to 2 decimal places.
 	//Method accepts a double and returns a double.
-	public static double sqrt (double num) {
-		if(num < 0) {
+	public static double sqrt (double number) {
+		if(number < 0) {
 			throw new IllegalArgumentException("cannot find square root of negative");
 		}
 		double guess = 1.0;
-		while (Calculate.absValue(guess*guess - num) > 0.005) {
-			guess = (num/guess + guess)/2;
+		while (Calculate.absValue(guess*guess - number) > 0.005) {
+			guess = (number/guess + guess)/2;
 		}
 		guess = Calculate.round2(guess);
 		return guess;
@@ -224,8 +224,8 @@ public class Calculate {
 			return "no real roots";
 		}
 		
-		double root1 = (-b + Calculate.sqrt(Calculate.square(b) - 4*a*c))/(2*a);
-		double root2 = (-b - Calculate.sqrt(Calculate.square(b) - 4*a*c))/(2*a);
+		double root1 = (-b + Calculate.sqrt(Calculate.discriminant(a, b , c)))/(2*a);
+		double root2 = (-b - Calculate.sqrt(Calculate.discriminant(a, b , c))/(2*a));
 		if (root1 == root2) {
 			root1 = Calculate.round2(root1);
 			return "" + root1;
