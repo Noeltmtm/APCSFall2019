@@ -67,7 +67,7 @@ public class Hourglass {
 			String testQuit = userExit.nextLine();
 			if(testQuit.equals("quit")) {
 				quit = true;
-				userInput.close();
+				userInput.close(); 
 			}
 		}
 	}
