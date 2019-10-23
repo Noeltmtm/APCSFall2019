@@ -40,7 +40,7 @@ public class Calculate {
 	//A call to toRadians converts and returns degrees to radians
 	//The method accepts a double and returns a double
 	public static double toRadians(double degrees) {
-		double radians = degrees * 0.01745;//0.01745 is equal to pi/180
+		double radians = degrees * (3.14159/180);
 		return radians;
 	}
 	
@@ -63,7 +63,7 @@ public class Calculate {
 	public static String toMixedNum(int numerator, int denominator) {
 		int mixedNumberWhole = numerator/denominator;
 		int mixedNumberNumerator = numerator - (mixedNumberWhole*denominator);
-		return (mixedNumberWhole + "  " + mixedNumberNumerator + "/" + denominator);
+		return (mixedNumberWhole + "_" + mixedNumberNumerator + "/" + denominator);
 	}
 	
 	//a call to foil converts and returns a binomial to quadratic form
@@ -73,7 +73,7 @@ public class Calculate {
 		int firstTerm = a * c;
 		int secondTerm = (a * d) + (c * b);
 		int thirdTerm = b * d;
-		return firstTerm + x + "^2 + " + "(" + secondTerm + x +") + (" + thirdTerm + ")";
+		return firstTerm + x + "^2 + " + secondTerm + x + " + " + thirdTerm;
 	}
 	
 	//A call to idDivisibleBy determines if one integer is evenly divisible by another
@@ -141,8 +141,7 @@ public class Calculate {
 			number = (int) number;
 			return number/100;
 		}else {
-			number = (number * 100) 
-					- 0.5;
+			number = (number * 100) - 0.5;
 			number = (int) number;
 			return number/100;
 		}
@@ -180,7 +179,7 @@ public class Calculate {
 		boolean prime = true;
 		int test  = 2;
 		while(test < number) {
-			if (test % number == 0) {
+			if (number % test == 0) {
 				prime = false;
 				return prime;
 			}
@@ -192,8 +191,13 @@ public class Calculate {
 	//A call to gcf finds the greatest common factor of two integers.
 	//The method accepts two positive integers and returns an integer.
 	public static int gcf(int a, int b) {
+		if(a == 0) {
+			return b;
+		}else if(b == 0) {
+			return a;
+		}
 		int test = 1;
-		int gcf = 1;
+		int gcf = 0;
 		while (test <= a && test <= b) {
 			if (a % test == 0 && b % test == 0) {
 				gcf = test;
@@ -209,6 +213,9 @@ public class Calculate {
 		if(number < 0) {
 			throw new IllegalArgumentException("cannot find square root of negative");
 		}
+		if(number == 0) {
+			return 0;
+		}
 		double guess = 1.0;
 		while (Calculate.absValue(guess*guess - number) > 0.005) {
 			guess = (number/guess + guess)/2;
@@ -220,19 +227,24 @@ public class Calculate {
 	//A call to quadForm uses coefficients of a quadratic in standard form and uses quadratic formula to approximate the real roots, if any.
 	//Method accepts 3 integers and returns a string  
 	public static String quadForm(int a, int b, int c) {
-		if (Calculate.discriminant(a, b, c) < 0){
+		if(discriminant(a, b, c) < 0){
 			return "no real roots";
 		}
 		
-		double root1 = (-b + Calculate.sqrt(Calculate.discriminant(a, b , c)))/(2*a);
-		double root2 = (-b - Calculate.sqrt(Calculate.discriminant(a, b , c))/(2*a));
+		double root1 = (-b + (sqrt(discriminant(a,b,c))))/(2*a);
+		double root2 = (-b - (sqrt(discriminant(a,b,c))))/(2*a);
 		if (root1 == root2) {
-			root1 = Calculate.round2(root1);
+			root1 = round2(root1);
 			return "" + root1;
 		}else {
-			root1 = Calculate.round2(root1);
-			root2 = Calculate.round2(root2 );
-			return root1 + " and " + root2;
+			root1 = round2(root1);
+			root2 = round2(root2 );
+			if (root1 < root2) {
+				return root1 + " and " + root2;
+			}else {
+				return root2 + " and " + root1;
+			}
+			
 		}
 	}
 	 
